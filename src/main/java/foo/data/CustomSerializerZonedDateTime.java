@@ -21,10 +21,10 @@ class CustomSerializerZonedDateTime extends JsonSerializer<ZonedDateTime> {
 		final String formattedDate = dateTime.format(FORMATTER);
 		if (formattedDate.endsWith("Z")) {
 			final String fixedFormattedDate = formattedDate.replace("Z", "+00:00");
-			logger.info("___serialize_mod_: {}", fixedFormattedDate);
+			logger.trace("___serialize_mod_: {}", fixedFormattedDate);
 			gen.writeString(fixedFormattedDate);
 		} else {
-			logger.info("___serialize_____: {}", formattedDate);
+			logger.trace("___serialize_____: {}", formattedDate);
 			gen.writeString(formattedDate);
 		}
 	}
