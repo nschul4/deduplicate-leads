@@ -5,11 +5,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import foo.data.ChangeLog;
 import foo.data.Lead;
 
 public class LeadProcessor {
-
+	private static final Logger logger = LoggerFactory.getLogger(LeadProcessor.class);
 	private final Map<String, Lead> uniqueLeadsById = new HashMap<>();
 	private final Map<String, Lead> uniqueLeadsByEmail = new HashMap<>();
 	private final ArrayList<Lead> dediplicatedLeads = new ArrayList<>();
@@ -36,12 +39,15 @@ public class LeadProcessor {
 	private Lead getExistingLead(final Lead newLead) {
 		final Lead existingLeadById = uniqueLeadsById.get(newLead.getId());
 		if (existingLeadById != null) {
+			logger.debug("lead duplicate by id: {}", newLead.getId());
 			return existingLeadById;
 		}
 		final Lead existingLeadByEmail = uniqueLeadsByEmail.get(newLead.getEmail());
 		if (existingLeadByEmail != null) {
+			logger.debug("lead duplicate by email: {}", newLead.getEmail());
 			return existingLeadByEmail;
 		}
+		logger.debug("lead original: {}:{}", newLead.getId(), newLead.getEmail());
 		return null;
 	}
 
