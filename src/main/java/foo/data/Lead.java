@@ -38,12 +38,12 @@ public class Lead {
 		return additionalProperties;
 	}
 
-	public static Lead copy(final Lead lead) {
+	public Lead deepCopy() {
 		final Lead newLead = new Lead();
-		newLead.setId(lead.getId());
-		newLead.setEmail(lead.getEmail());
-		newLead.setEntryDate(lead.getEntryDate());
-		for (final Entry<String, Object> entry : lead.getAdditionalProperties().entrySet()) {
+		newLead.setId(this.getId());
+		newLead.setEmail(this.getEmail());
+		newLead.setEntryDate(this.getEntryDate());
+		for (final Entry<String, Object> entry : this.getAdditionalProperties().entrySet()) {
 			newLead.getAdditionalProperties().put(entry.getKey(), entry.getValue());
 		}
 		return newLead;

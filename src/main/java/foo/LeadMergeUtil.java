@@ -85,8 +85,8 @@ public class LeadMergeUtil {
 	private static ChangeLog createChangeLog(final Lead from, final Lead to) {
 		final ChangeLog changeLog = new ChangeLog();
 		changeLog.setPropertyChanges(new ArrayList<>());
-		changeLog.setFrom(Lead.copy(from));
-		changeLog.setTo(Lead.copy(to));
+		changeLog.setFrom(from.deepCopy());
+		changeLog.setTo(to.deepCopy());
 		return changeLog;
 	}
 
