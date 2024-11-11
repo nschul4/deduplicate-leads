@@ -3,6 +3,7 @@ package foo.data;
 import java.time.ZonedDateTime;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
@@ -35,5 +36,16 @@ public class Lead {
 	@JsonAnyGetter
 	public Map<String, Object> getAdditionalProperties() {
 		return additionalProperties;
+	}
+
+	public static Lead copy(final Lead lead) {
+		final Lead newLead = new Lead();
+		newLead.setId(lead.getId());
+		newLead.setEmail(lead.getEmail());
+		newLead.setEntryDate(lead.getEntryDate());
+		for (final Entry<String, Object> entry : lead.getAdditionalProperties().entrySet()) {
+			newLead.getAdditionalProperties().put(entry.getKey(), entry.getValue());
+		}
+		return newLead;
 	}
 }
