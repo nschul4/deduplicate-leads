@@ -3,11 +3,10 @@ package foo;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.Objects;
 
 import foo.data.ChangeLog;
 import foo.data.Lead;
-
-import java.util.Objects;
 
 public class LeadMergeUtil {
 
