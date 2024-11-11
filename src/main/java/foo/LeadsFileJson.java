@@ -15,7 +15,7 @@ public class LeadsFileJson {
 	private LeadsFileJson() {
 	}
 
-	public static List<Lead> loadLeadsFromFile(String intputFilename) throws IOException {
+	public static List<Lead> loadLeadsFromFile(final String intputFilename) throws IOException {
 		final File jsonFile = new File(intputFilename);
 		final ObjectMapper objectMapper = new ObjectMapper();
 
